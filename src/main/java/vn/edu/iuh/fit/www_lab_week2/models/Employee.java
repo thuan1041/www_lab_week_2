@@ -10,8 +10,9 @@ import java.sql.Date;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="employee")
+    @Column(name = "emp_id", columnDefinition = "BEGINT(20)")
     private long employeeId;
+    @Column(name = "full_name", columnDefinition = "")
     private String fullName;
     private Date dob;
     private String email;
