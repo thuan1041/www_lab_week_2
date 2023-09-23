@@ -1,10 +1,16 @@
 package vn.edu.iuh.fit.www_lab_week2.models;
 
+import jakarta.persistence.*;
 import vn.edu.iuh.fit.www_lab_week2.enums.EmployeeStatus;
 
 import java.sql.Date;
 
+@Entity
+@Table(name = "employee")
 public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="employee")
     private long employeeId;
     private String fullName;
     private Date dob;
