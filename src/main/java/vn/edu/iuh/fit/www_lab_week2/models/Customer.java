@@ -1,10 +1,21 @@
 package vn.edu.iuh.fit.www_lab_week2.models;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="customer")
 public class Customer {
+    @Id
+    @Column(name="cust_id", columnDefinition ="BIGINT(20)",nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long customerId;
+    @Column(name="cust_adress", columnDefinition ="VARCHAR(150)")
     private String address;
+    @Column(name="cust_email", columnDefinition ="VARCHAR(150)")
     private String email;
+    @Column(name="cust_name", columnDefinition ="VARCHAR(150)")
     private String name;
+    @Column(name="cust_phone", columnDefinition ="VARCHAR(150)")
     private String phone;
 
     public Customer() {

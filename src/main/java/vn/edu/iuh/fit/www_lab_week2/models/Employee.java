@@ -12,12 +12,21 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "emp_id", columnDefinition = "BEGINT(20)")
     private long employeeId;
-    @Column(name = "full_name", columnDefinition = "")
+    @Column(name = "full_name", columnDefinition = "VARCHAR(150)")
     private String fullName;
+    @Column(name = "dob", columnDefinition = "DATETIME(6)")
     private Date dob;
+    @Column(name = "email", columnDefinition = "VARCHAR(150)")
+
     private String email;
+    @Column(name = "phone", columnDefinition = "VARCHAR(150)")
+
     private String phone;
+    @Column(name = "adress", columnDefinition = "VARCHAR(150)")
+
     private String address;
+    @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.ORDINAL)
     private EmployeeStatus status;
 
     public Employee() {
