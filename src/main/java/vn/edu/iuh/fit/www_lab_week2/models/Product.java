@@ -1,15 +1,36 @@
 package vn.edu.iuh.fit.www_lab_week2.models;
 
+import jakarta.persistence.*;
 import vn.edu.iuh.fit.www_lab_week2.enums.ProductStatus;
 
+import java.util.List;
+
+@Entity
+@Table(name = "product")
 public class Product {
+    @Id
+    @Column(name = "product_id")
     private long productId;
+    @Column(name = "name")
     private String name;
+    @Column(name = "description")
     private String description;
+    @Column(name ="unit")
     private String unit;
+    @Column(name = "manufacturer")
     private String manufacturerName;
+    @Enumerated(EnumType.ORDINAL)
+//    @Column(name = "status")
+    @Column(nullable = false)
     private ProductStatus status;
 
+    @OneToMany(mappedBy = "product")
+    private List<OrderDetail> orderDetailList;
+
+    @OneToMany
+    private List<ProductImage> productImageList;
+    @OneToMany(mappedBy = "product")
+    private  List<ProductPrice> productPrices;
     public Product() {
     }
 

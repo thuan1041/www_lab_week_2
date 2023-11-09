@@ -1,11 +1,23 @@
 package vn.edu.iuh.fit.www_lab_week2.models;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name ="product_price")
 public class ProductPrice {
+    @Id
     private LocalDateTime priceDateTime;
+    @Column(name = "note")
     private String note;
+
+    @Column(name ="price")
     private double price;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     public ProductPrice() {
     }

@@ -1,9 +1,21 @@
 package vn.edu.iuh.fit.www_lab_week2.models;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "product_image")
 public class ProductImage {
+    @Id
+    @Column(name = "image_id")
     private long imageID;
+    @Column(name = "alternative")
     private String alternative;
+    @Column(name = "path")
     private String path;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     public ProductImage() {
     }

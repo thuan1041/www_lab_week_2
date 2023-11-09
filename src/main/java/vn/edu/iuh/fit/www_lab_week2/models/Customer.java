@@ -2,6 +2,8 @@ package vn.edu.iuh.fit.www_lab_week2.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="customer")
 public class Customer {
@@ -17,7 +19,8 @@ public class Customer {
     private String name;
     @Column(name="cust_phone", columnDefinition ="VARCHAR(150)")
     private String phone;
-
+    @OneToMany(mappedBy = "customer")
+    private List<Order> orderList;
     public Customer() {
     }
 
