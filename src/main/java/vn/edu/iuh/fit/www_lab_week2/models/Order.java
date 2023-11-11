@@ -23,7 +23,7 @@ public class Order {
     private List<OrderDetail> orderDetails;
 
     @ManyToOne
-    @JoinColumn(name = "emp_id")
+    @JoinColumn(name = "employee_id")
     private Employee employee;
 
     public Order() {

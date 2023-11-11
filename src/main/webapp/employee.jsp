@@ -11,6 +11,18 @@
 <html>
 <head>
     <title>Employee</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
 <table>
     <tr>
         <td>ID</td>
@@ -27,7 +39,7 @@
         for(Employee employee : employeeList) {
     %>
         <tr>
-            <td><%=employee.getEmployeeId() %></td>
+            <td><%=employee.getEmpId() %></td>
             <td><%=employee.getFullName() %></td>
             <td><%=employee.getAddress() %></td>
             <td><%=employee.getEmail() %></td>
@@ -39,6 +51,35 @@
         }
     %>
 </table>
+
+<form action="employeeController" method="post">
+    <label for="fullName">Full Name:</label>
+    <input type="text" id="fullName" name="fullName" >
+
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address" >
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" >
+
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob" >
+
+    <label for="phone">Phone:</label>
+    <input type="text" id="phone" name="phone" >
+
+    <label for="status">Status:</label>
+    <select id="status" name="status" >
+        <option value="ACTIVE" selected>Active</option>
+        <option value="IN_ACTIVE">Inactive</option>
+        <option value="TERMINATED">TERMINATED</option>
+    </select>
+
+    <button type="submit"  name="action" value="AddEmployee">Add Employee</button>
+
+
+</form>
+
 </head>
 <body>
 

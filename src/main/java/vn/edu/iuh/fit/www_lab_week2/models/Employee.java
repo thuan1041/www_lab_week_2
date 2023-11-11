@@ -17,34 +17,37 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "employee_id")
     private Long empId;
-    @Column(name = "full_name")
+    @Column(name = "full_name", length = 150, nullable = false)
     private String fullName;
-    @Column(name = "dob", columnDefinition = "date(6)")
+    @Column(nullable = false)
     private Date dob;
-    @Column(name = "email")
+    @Column(unique = true, length = 150)
     private String email;
-    @Column(name = "phone")
+    @Column(length = 15, nullable = false)
     private String phone;
-    @Column(name = "address")
+    @Column(length = 250, nullable = false)
     private String address;
     @Enumerated(EnumType.ORDINAL)
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     private EmployeeStatus status;
     @JsonbTransient
     @OneToMany(mappedBy = "employee")
     private List<Order> orderList;
 
-    public Employee() {
+    public Employee(String name, java.util.Date dob, String email, String phone, String address, EmployeeStatus status) {
     }
 
-    public Employee(String fullName, Date dob, String email, String phone, String address, EmployeeStatus status, List<Order> orderList) {
+    public Employee(String fullName, Date dob, String email, String phone, String address, EmployeeStatus status) {
         this.fullName = fullName;
         this.dob = dob;
         this.email = email;
         this.phone = phone;
         this.address = address;
         this.status = status;
-        this.orderList = orderList;
+    }
+
+    public Employee() {
+
     }
 
     public Long getEmpId() {
