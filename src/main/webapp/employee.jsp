@@ -75,7 +75,7 @@
         <option value="TERMINATED">TERMINATED</option>
     </select>
 
-    <button type="submit"  name="action" value="AddEmployee">Add Employee</button>
+    <button type="submit"  name="action" value="insertEmployee">Insert Employee</button>
 
 
 </form>

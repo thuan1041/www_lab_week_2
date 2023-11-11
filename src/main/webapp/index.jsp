@@ -9,7 +9,8 @@
 <h1><%= "Hello World!" %></h1>
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
-<a href="employee.jsp">Employee</a>
+<%--<a href="employee.jsp">Employee</a>--%>
+<a href="employeeController?action=getAllEmployee">Employee</a>
 <%
   EmployeeServices employeeServices = new EmployeeServices();
 %>

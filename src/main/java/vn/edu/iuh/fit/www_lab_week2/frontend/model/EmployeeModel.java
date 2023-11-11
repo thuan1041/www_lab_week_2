@@ -31,9 +31,10 @@ public class EmployeeModel {
         String phone = request.getParameter("phone");
         String status = request.getParameter("status");
 
-//        String fullName, Date dob, String email, String phone, String address, EmployeeStatus status, List<Order> orderList) {
-
-        Employee e = new Employee(name, dob, email, phone,address, EmployeeStatus.valueOf(status));
+        Employee e = new Employee(address,dob,email,phone,address,EmployeeStatus.valueOf(status));
+        System.out.println("---------------------------------------------");
+        System.out.println(e);
+        System.out.println("---------------------------------------------");
         employeeServices.insertEmployee(e);
 
     }

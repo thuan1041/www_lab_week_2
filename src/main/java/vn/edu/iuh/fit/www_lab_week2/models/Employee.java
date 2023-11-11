@@ -4,8 +4,8 @@ import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.*;
 import vn.edu.iuh.fit.www_lab_week2.enums.EmployeeStatus;
 
-import java.sql.Date;
 import java.util.List;
+import java.util.Date;
 
 @Entity
 @Table(name = "employee")
@@ -34,10 +34,14 @@ public class Employee {
     @OneToMany(mappedBy = "employee")
     private List<Order> orderList;
 
-    public Employee(String name, java.util.Date dob, String email, String phone, String address, EmployeeStatus status) {
-    }
+//    public Employee(String name, java.util.Date dob, String email, String phone, String address, EmployeeStatus status) {
+//    }
 
-    public Employee(String fullName, Date dob, String email, String phone, String address, EmployeeStatus status) {
+//    public Employee(String address, java.util.Date dob, String email,String fullName, String phone, EmployeeStatus status){
+//
+//    }
+
+    public Employee(String address, Date dob, String email, String fullName, String phone, EmployeeStatus status) {
         this.fullName = fullName;
         this.dob = dob;
         this.email = email;
@@ -112,5 +116,19 @@ public class Employee {
 
     public void setOrderList(List<Order> orderList) {
         this.orderList = orderList;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "empId=" + empId +
+                ", fullName='" + fullName + '\'' +
+                ", dob=" + dob +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", status=" + status +
+                ", orderList=" + orderList +
+                '}';
     }
 }

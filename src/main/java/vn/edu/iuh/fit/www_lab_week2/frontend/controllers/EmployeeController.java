@@ -19,10 +19,16 @@ public class EmployeeController extends HttpServlet {
         if(action.equals("getAllEmployee")){
             resp.sendRedirect("employee.jsp");
         }
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        EmployeeModel employeeModel = new EmployeeModel();
+        String action = req.getParameter("action");
+        if(action.equals("insertEmployee")){
+            employeeModel.insertEmployee(req,resp);
+            resp.sendRedirect("employee.jsp");
+        }
     }
 }
