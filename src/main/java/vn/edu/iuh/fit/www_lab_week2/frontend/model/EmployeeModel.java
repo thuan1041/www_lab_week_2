@@ -1,12 +1,14 @@
 package vn.edu.iuh.fit.www_lab_week2.frontend.model;
 
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.iuh.fit.www_lab_week2.enums.EmployeeStatus;
 import vn.edu.iuh.fit.www_lab_week2.models.Employee;
-import vn.edu.iuh.fit.www_lab_week2.resources.EmployeeResource;
 import vn.edu.iuh.fit.www_lab_week2.services.EmployeeServices;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
 import java.text.DateFormat;
@@ -43,34 +45,64 @@ public class EmployeeModel {
         return employeeServices.findAllEmployee();
     }
 
-    public void updateEmployee(HttpServletRequest request, HttpServletResponse response) throws ParseException {
+    public void updateEmployee(HttpServletRequest request, HttpServletResponse response) throws ParseException, IOException {
         EmployeeServices employeeServices = new EmployeeServices();
-        Long idFind = Long.parseLong(request.getParameter("idFind"));
+        System.out.println("-------------------------");
+        System.out.println(request.getParameter("EmployeeId"));
+        System.out.println("-------------------------");
+        Long idFind = Long.parseLong(request.getParameter("EmployeeId"));
         Employee e =  employeeServices.findById(idFind);
-//        String fullName, Date dob, String email, String phone, String address, EmployeeStatus status, List<Order> orderList) {
 
-        if(!request.getParameter("fullname").isEmpty()){
-            e.setFullName(request.getParameter("fullname"));
-        }
+
+        String fullName = request.getParameter("fullName");
+        String dobParam = request.getParameter("dob");
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String dobReq = request.getParameter("dob");
-        Date dob = dateFormat.parse(dobReq);
-        if(!(dobReq.isEmpty())){
-            e.setDob((java.sql.Date) dob);
-        }
-        if(!request.getParameter("email").isEmpty()){
-            e.setFullName(request.getParameter("email"));
-        }
-        if(!request.getParameter("phone").isEmpty()){
-            e.setFullName(request.getParameter("phone"));
-        }
-        if(!request.getParameter("address").isEmpty()){
-            e.setFullName(request.getParameter("address"));
-        }
-        if(!request.getParameter("status").isEmpty()){
-            String status = request.getParameter("status");
-            e.setStatus(EmployeeStatus.valueOf(status));
-        }
+        Date dob = dateFormat.parse(dobParam);
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String address = request.getParameter("address");
+        String status = request.getParameter("status");
+
+        e.setFullName(fullName);
+        e.setDob(dob);
+        e.setEmail(email);
+        e.setPhone(phone);
+        e.setAddress(address);
+        e.setStatus(EmployeeStatus.valueOf(status));
         employeeServices.updateEmployee(e);
+        System.out.println("============================");
+        System.out.println(e);
+        System.out.println("============================");
+        response.sendRedirect("employee.jsp");
+    }
+    public void employeeDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        EmployeeServices employeeServices = new EmployeeServices();
+        String url = "";
+        try{
+            Long id = Long.parseLong(request.getParameter("id"));
+            Employee employee = employeeServices.findById(id);
+            request.setAttribute("employee", employee);
+//            response.sendRedirect("employee_Detail.jsp");
+            url = "/employee_Detail.jsp";
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher(url);
+        dispatcher.forward(request, response);
+    }
+
+    public void getEmployeeUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        EmployeeServices employeeServices = new EmployeeServices();
+        String url ="";
+        try {
+            Long id = Long.parseLong(request.getParameter("id"));
+            Employee employee = employeeServices.findById(id);
+            request.setAttribute("employee", employee);
+            url = "/employee_Update.jsp";
+        } catch ( Exception e){
+            e.printStackTrace();
+        }
+        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher(url);
+        dispatcher.forward(request,response);
     }
 }

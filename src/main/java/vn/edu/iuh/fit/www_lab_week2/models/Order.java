@@ -12,13 +12,14 @@ import java.util.List;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id", columnDefinition = "begin(20)")
+    @Column(name = "order_id")
     private long orderId;
-    @Column(name = "datetime(6)")
+    @Column(name = "order_date")
     private LocalDateTime orderDate;
     @ManyToOne
     @JoinColumn(name="cust_id")
     private Customer customer;
+    @JsonbTransient
     @OneToMany()
     private List<OrderDetail> orderDetails;
 

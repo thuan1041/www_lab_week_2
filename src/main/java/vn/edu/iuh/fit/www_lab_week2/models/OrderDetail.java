@@ -7,13 +7,6 @@ import javax.xml.namespace.QName;
 @Entity
 @Table(name = "order_detail")
 public class OrderDetail {
-    @Column(name = "note")
-    private String note;
-    @Column(name = "price")
-    private double price;
-    @Column(name = "quantity")
-    private double quantity;
-
     @Id
     @ManyToOne
     @JoinColumn(name = "order_id")
@@ -22,6 +15,13 @@ public class OrderDetail {
     @ManyToOne()
     @JoinColumn(name = "product_id")
     private Product product;
+
+    @Column(name = "note")
+    private String note;
+    @Column(name = "price", nullable = false)
+    private double price;
+    @Column(name = "quantity", nullable = false)
+    private double quantity;
 
     public OrderDetail() {
     }

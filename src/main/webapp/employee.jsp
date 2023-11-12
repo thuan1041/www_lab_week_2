@@ -46,6 +46,12 @@
             <td><%=employee.getDob() %></td>
             <td><%=employee.getPhone() %></td>
             <td><%=employee.getStatus() %></td>
+            <td>
+                <a href="employeeController?action=updateEmployee&id=<%=employee.getEmpId()%>">Update</a>
+            </td>
+            <td>
+                <a href="employeeController?action=viewEmployee&id=<%=employee.getEmpId()%>">View Detail</a>
+            </td>
         </tr>
     <%
         }
@@ -74,7 +80,6 @@
         <option value="IN_ACTIVE">Inactive</option>
         <option value="TERMINATED">TERMINATED</option>
     </select>
-
     <button type="submit"  name="action" value="insertEmployee">Insert Employee</button>
 
 

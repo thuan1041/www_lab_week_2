@@ -52,7 +52,7 @@ public class EmployeeRepository {
     }
 
     public Employee findById(long id) {
-        TypedQuery<Employee> query = em.createQuery("select e from Employee e where e.employeeId =: id", Employee.class);
+        TypedQuery<Employee> query = em.createQuery("SELECT e FROM Employee e WHERE e.empId = :id", Employee.class);
         query.setParameter("id", id);
         return query.getSingleResult();
     }

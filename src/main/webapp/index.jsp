@@ -11,6 +11,7 @@
 <a href="hello-servlet">Hello Servlet</a>
 <%--<a href="employee.jsp">Employee</a>--%>
 <a href="employeeController?action=getAllEmployee">Employee</a>
+<a href="employeeController?action=updateEmployee">Update Employee</a>
 <%
   EmployeeServices employeeServices = new EmployeeServices();
 %>
