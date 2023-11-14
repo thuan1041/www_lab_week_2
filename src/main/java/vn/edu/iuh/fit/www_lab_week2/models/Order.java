@@ -9,6 +9,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "orders")
+@NamedQueries(
+        @NamedQuery(name = "Order.findAll", query = "select o from Order o")
+)
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
